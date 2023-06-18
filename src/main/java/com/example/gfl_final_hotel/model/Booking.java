@@ -22,9 +22,9 @@ public class Booking {
     private Long roomId;
 
     @Column(columnDefinition = "DATE")
-    private LocalDate from;
+    private LocalDate dayFrom;
     @Column(columnDefinition = "DATE")
-    private LocalDate to;
+    private LocalDate dayTo;
 
     private Integer sum;
 }
