@@ -13,10 +13,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Room {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private Boolean isAvailable;
 
-    private Integer price;
+    private RoomType type;
+
+    private Integer capacity;
+
 }

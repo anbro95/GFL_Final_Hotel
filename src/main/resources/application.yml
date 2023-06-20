@@ -2,7 +2,7 @@ spring:
   application:
     name: mentor-service
   datasource:
-    url: jdbc:postgresql://localhost:54320/
+    url: jdbc:postgresql://localhost:54320/GFL_Hotel
     driver-class-name: org.postgresql.Driver
     username: user
     password: admin

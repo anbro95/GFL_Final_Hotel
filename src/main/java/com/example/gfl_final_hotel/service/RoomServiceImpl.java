@@ -8,9 +8,10 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class RoomServiceImpl {
-    final RoomReposotory roomReposotory;
+    private final RoomReposotory roomReposotory;
 
     public Room addRoom(Room room) {
+
         return roomReposotory.save(room);
     }
 }

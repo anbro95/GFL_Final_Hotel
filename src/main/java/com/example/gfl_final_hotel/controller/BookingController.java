@@ -12,7 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/bookings")
 public class BookingController {
-    final BookingServiceImpl bookingService;
+    private final BookingServiceImpl bookingService;
 
     @PostMapping("")
     public ResponseEntity<Booking> createBooking(@RequestBody Booking booking) {
