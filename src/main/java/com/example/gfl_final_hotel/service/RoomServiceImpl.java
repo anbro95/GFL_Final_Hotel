@@ -1,17 +1,16 @@
 package com.example.gfl_final_hotel.service;
 
 import com.example.gfl_final_hotel.model.Room;
-import com.example.gfl_final_hotel.repo.RoomReposotory;
+import com.example.gfl_final_hotel.repo.RoomRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class RoomServiceImpl {
-    private final RoomReposotory roomReposotory;
+    private final RoomRepository roomRepository;
 
     public Room addRoom(Room room) {
-
-        return roomReposotory.save(room);
+        return roomRepository.save(room);
     }
 }

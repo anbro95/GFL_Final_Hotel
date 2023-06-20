@@ -18,8 +18,10 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long guestId;
-    private Long roomId;
+    @ManyToOne
+    private Guest guest;
+    @ManyToOne
+    private Room room;
 
     @Column(columnDefinition = "DATE")
     private LocalDate dayFrom;

@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.jmx.export.annotation.ManagedNotification;
 
+import java.util.List;
+
 @Entity
 @Table
 @Data
@@ -22,4 +24,5 @@ public class Guest {
     private String email;
 
     private String passport;
+
 }

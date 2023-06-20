@@ -15,8 +15,9 @@ public class BookingController {
     private final BookingServiceImpl bookingService;
 
     @PostMapping("")
-    public ResponseEntity<Booking> createBooking(@RequestBody Booking booking) {
-        return ResponseEntity.ok().body(bookingService.createBooking(booking));
+    public ResponseEntity<Booking> createBooking(@RequestBody Booking booking, @RequestParam(name = "guestId", required = true) Long guestId,
+                                                 @RequestParam(name = "roomId", required = true) Long roomId) {
+        return ResponseEntity.ok().body(bookingService.createBooking(booking, roomId, guestId));
     }
 
     @GetMapping("")

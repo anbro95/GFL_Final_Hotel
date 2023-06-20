@@ -24,9 +24,9 @@ public class ReceiptMaker {
 
             stream.showText(" Booking " + booking.getId());
             stream.newLineAtOffset(0, -20); // Move to the next line
-            stream.showText(" Guest: " + booking.getGuestId());
+            stream.showText(" Guest: " + booking.getGuest().getFirstName() + " " + booking.getGuest().getLastName());
             stream.newLineAtOffset(0, -20); // Move to the next line
-            stream.showText(" Room: " + booking.getRoomId());
+            stream.showText(" Room: " + booking.getRoom().getId());
             stream.newLineAtOffset(0, -20); // Move to the next line
             stream.showText(" Booking starts: " + booking.getDayFrom());
             stream.newLineAtOffset(0, -20); // Move to the next line
