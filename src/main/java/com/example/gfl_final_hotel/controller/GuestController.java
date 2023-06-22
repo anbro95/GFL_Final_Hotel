@@ -26,4 +26,14 @@ public class GuestController {
     public ResponseEntity<List<Guest>> getAllByCheckOut() {
         return ResponseEntity.ok().body(guestService.getAllByCheckOut());
     }
+
+    @GetMapping("")
+    public ResponseEntity<List<Guest>> getByParams(@RequestParam(required = false) Long id,
+                                                   @RequestParam(required = false) String firstName,
+                                                   @RequestParam(required = false) String lastName,
+                                                   @RequestParam(required = false) String email,
+                                                   @RequestParam(required = false) String passport) {
+
+        return ResponseEntity.ok().body(guestService.getByParams(id, firstName, lastName, email, passport));
+    }
 }

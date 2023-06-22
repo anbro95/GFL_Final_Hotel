@@ -8,5 +8,8 @@ import java.awt.print.Book;
 import java.util.List;
 
 public interface GuestRepository extends JpaRepository<Guest, Long> {
-
+    List<Guest> findByFirstName(String firstName);
+    List<Guest> findByLastName(String lastName);
+    List<Guest> findByEmail(String email);
+    List<Guest> findByPassport(String passport);
 }

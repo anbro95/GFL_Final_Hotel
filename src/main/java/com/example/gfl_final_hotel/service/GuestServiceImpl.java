@@ -24,4 +24,20 @@ public class GuestServiceImpl {
         List<Booking> list = bookingService.getAll().stream().filter(b -> LocalDate.now().equals(b.getDayTo())).toList();
         return list.stream().map(Booking::getGuest).toList();
     }
+
+    public List<Guest> getByParams(Long id, String firstName, String lastName, String email, String passport) {
+        if (id != null)
+            return List.of(guestRepository.findById(id).orElse(null));
+        else if (firstName != null)
+            return guestRepository.findByFirstName(firstName);
+        else if (lastName != null)
+            return guestRepository.findByLastName(lastName);
+        else if (email != null)
+            return guestRepository.findByEmail(email);
+        else if (passport != null)
+            return guestRepository.findByPassport(passport);
+
+        else
+            return guestRepository.findAll();
+    }
 }
