@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -22,11 +23,12 @@ public class BookingServiceImpl {
     private final GuestRepository guestRepository;
 
     public Booking createBooking(Booking booking, Long roomId, Long guestId) {
-        Room room = roomRepository.findById(roomId).orElse(null);
-        Guest guest = guestRepository.findById(guestId).orElse(null);
+        Room room = roomRepository.findById(roomId).orElseThrow(NoSuchElementException::new);
+        Guest guest = guestRepository.findById(guestId).orElseThrow(NoSuchElementException::new);
 
-        if (room == null || guest == null)
-            throw new NoSuchElementException();
+//        if (!room.getIsAvailable()) {
+//            throw new
+//        }
 
         Duration difference = Duration.between(booking.getDayFrom().atStartOfDay(), booking.getDayTo().atStartOfDay());
         int duration = (int) difference.toDays();
@@ -48,5 +50,12 @@ public class BookingServiceImpl {
 
     public List<Booking> getAll() {
         return bookingRepository.findAll();
+    }
+
+    public Booking changeDate(Long bookingId, LocalDate date) {
+        Booking booking = bookingRepository.findById(bookingId).orElseThrow(NoSuchElementException::new);
+
+        booking.setDayTo(date);
+        return createBooking(booking, booking.getRoom().getId(), booking.getGuest().getId());
     }
 }

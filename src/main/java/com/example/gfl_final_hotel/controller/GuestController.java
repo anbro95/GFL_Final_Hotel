@@ -8,6 +8,7 @@ import org.hibernate.action.internal.UnresolvedEntityInsertActions;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -17,11 +18,11 @@ public class GuestController {
     private final GuestServiceImpl guestService;
 
     @PostMapping("")
-    public ResponseEntity saveGuest(@RequestBody Guest guest) {
+    public ResponseEntity<Guest> saveGuest(@RequestBody Guest guest) {
         return ResponseEntity.ok().body(guestService.saveGuest(guest));
     }
 
-    @GetMapping("")
+    @GetMapping("/checkout/today")
     public ResponseEntity<List<Guest>> getAllByCheckOut() {
         return ResponseEntity.ok().body(guestService.getAllByCheckOut());
     }

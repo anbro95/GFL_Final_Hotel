@@ -22,6 +22,6 @@ public class GuestServiceImpl {
 
     public List<Guest> getAllByCheckOut() {
         List<Booking> list = bookingService.getAll().stream().filter(b -> LocalDate.now().equals(b.getDayTo())).toList();
-        return guestRepository.findAllByBookings(list);
+        return list.stream().map(Booking::getGuest).toList();
     }
 }

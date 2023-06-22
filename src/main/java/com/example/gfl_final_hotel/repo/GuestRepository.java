@@ -8,5 +8,5 @@ import java.awt.print.Book;
 import java.util.List;
 
 public interface GuestRepository extends JpaRepository<Guest, Long> {
-    List<Guest> findAllByBookings(List<Booking> bookings);
+
 }
