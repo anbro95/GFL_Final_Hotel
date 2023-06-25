@@ -5,6 +5,7 @@ import com.example.gfl_final_hotel.repo.RoomRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
@@ -13,7 +14,12 @@ public class RoomServiceImpl {
     private final RoomRepository roomRepository;
 
     public Room addRoom(Room room) {
+        room.setIsAvailable(true);
         return roomRepository.save(room);
+    }
+
+    public List<Room> getAll() {
+        return roomRepository.findAll();
     }
 
     public Room vacateRoom(Long roomId) {
