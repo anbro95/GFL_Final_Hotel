@@ -10,7 +10,7 @@ import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor
-public class RoomServiceImpl {
+public class RoomService {
     private final RoomRepository roomRepository;
 
     public Room addRoom(Room room) {

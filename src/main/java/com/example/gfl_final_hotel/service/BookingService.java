@@ -17,7 +17,7 @@ import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor
-public class BookingServiceImpl {
+public class BookingService {
     private final BookingRepository bookingRepository;
     private final RoomRepository roomRepository;
     private final GuestRepository guestRepository;
@@ -26,12 +26,16 @@ public class BookingServiceImpl {
         Room room = roomRepository.findById(roomId).orElseThrow(NoSuchElementException::new);
         Guest guest = guestRepository.findById(guestId).orElseThrow(NoSuchElementException::new);
 
-//        if (!room.getIsAvailable()) {
-//            throw new
-//        }
+        if (!room.getIsAvailable()) {
+            throw new IllegalArgumentException();
+        }
 
         Duration difference = Duration.between(booking.getDayFrom().atStartOfDay(), booking.getDayTo().atStartOfDay());
         int duration = (int) difference.toDays();
+
+        if (duration < 1) {
+            throw new IllegalArgumentException();
+        }
 
         int sum = (duration * room.getType().price);
 
@@ -56,6 +60,21 @@ public class BookingServiceImpl {
         Booking booking = bookingRepository.findById(bookingId).orElseThrow(NoSuchElementException::new);
 
         booking.setDayTo(date);
-        return createBooking(booking, booking.getRoom().getId(), booking.getGuest().getId());
+
+        Duration difference = Duration.between(booking.getDayFrom().atStartOfDay(), booking.getDayTo().atStartOfDay());
+        int duration = (int) difference.toDays();
+
+        if (duration < 1) {
+            throw new IllegalArgumentException();
+        }
+
+        int sum = (duration * booking.getRoom().getType().price);
+
+        booking.setSum(sum);
+        booking = bookingRepository.save(booking);
+
+        ReceiptMaker.createReceipt(booking);
+        return booking;
+
     }
 }

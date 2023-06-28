@@ -8,13 +8,12 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class GuestServiceImpl {
+public class GuestService {
     private final GuestRepository guestRepository;
-    private final BookingServiceImpl bookingService;
+    private final BookingService bookingService;
 
     public Guest saveGuest(Guest guest) {
         return guestRepository.save(guest);

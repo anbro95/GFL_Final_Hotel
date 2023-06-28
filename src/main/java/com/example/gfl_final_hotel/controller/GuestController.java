@@ -2,13 +2,11 @@ package com.example.gfl_final_hotel.controller;
 
 
 import com.example.gfl_final_hotel.model.Guest;
-import com.example.gfl_final_hotel.service.GuestServiceImpl;
+import com.example.gfl_final_hotel.service.GuestService;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.action.internal.UnresolvedEntityInsertActions;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -16,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/guests")
 public class GuestController {
-    private final GuestServiceImpl guestService;
+    private final GuestService guestService;
 
     @PostMapping("")
     public ResponseEntity<Guest> saveGuest(@RequestBody Guest guest) {

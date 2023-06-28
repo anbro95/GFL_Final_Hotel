@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Guests</h1>
+    <h1>Rooms</h1>
   </div>
 
   <input type="text" placeholder="Id" v-model="this.room.id">
@@ -9,19 +9,14 @@
     <option value="SUIT">Suit</option>
     <option value="DELUXE">Deluxe</option>
   </select>
-  <select v-model="this.room.capacity">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="3">4</option>
-    <option value="3">5</option>
-  </select>
+  <input type="text" placeholder="Capacity" v-model="this.room.capacity">
   <button @click="saveRoom()">Save</button>
   <div v-for="room in rooms" :key="room.id" class="roomBox">
     <h3>Id: {{room.id}}</h3>
     <h3>Capacity: {{room.capacity}}</h3>
     <h3>Type: {{room.type}}</h3>
     <h3>Is Available: {{room.isAvailable}}</h3>
+    <button @click="vacateRoom(room.id)">Vacate</button>
   </div>
   <router-view></router-view>
 
@@ -47,6 +42,10 @@ export default {
 
     saveRoom() {
       axios.post(`http://localhost:8082/api/v1/rooms`, this.room)
+    },
+
+    vacateRoom(id) {
+      axios.put(`http://localhost:8082/api/v1/rooms/vacate/${id}`)
     }
 
   },
